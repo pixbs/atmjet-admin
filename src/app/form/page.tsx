@@ -1,10 +1,10 @@
 import EmptyLegList from '@/app/form/_components/EmptyLegList'
+import authOptions from '@/lib/auth'
 import { db, emptyLegs } from '@/lib/drizzle'
 import { eq } from 'drizzle-orm'
 import { getServerSession } from 'next-auth/next'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import { authOptions } from '../api/auth/[...nextauth]/route'
 import EmptyLegForm from './_components/empty_leg_form'
 
 type EmptyLeg = {
