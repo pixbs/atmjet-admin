@@ -1,11 +1,11 @@
-import EmptyLegList from '@/app/form/_components/EmptyLegList'
+import EmptyLegCard from '@/components/ui/empty_leg_card'
 import authOptions from '@/lib/auth'
 import { db, emptyLegs } from '@/lib/drizzle'
 import { eq } from 'drizzle-orm'
 import { getServerSession } from 'next-auth/next'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
-import EmptyLegForm from './_components/empty_leg_form'
+import AddEmptyLeg from './_components/empty_leg_form'
 
 type EmptyLeg = {
 	id: number
@@ -28,7 +28,7 @@ const EmptyLegPage = async () => {
 		return redirect('/auth/signin')
 	}
 
-	const legs: EmptyLeg[] = await db.select().from(emptyLegs)
+	const legs: EmptyLeg[] = await db.select().from(emptyLegs).orderBy(emptyLegs.order)
 
 	const deleteEmptyLeg = async (id: number) => {
 		'use server'
@@ -43,17 +43,18 @@ const EmptyLegPage = async () => {
 	}
 
 	return (
-		<div className='container mx-auto py-8'>
-			<h1 className='mb-4 text-2xl font-bold'>Manage Empty Legs</h1>
-			<div className='mt-8'>
-				<h2 className='mb-4 text-xl font-semibold'>Existing Legs</h2>
-				<EmptyLegList legs={legs} onDelete={deleteEmptyLeg} onEdit={editEmptyLeg} />
-			</div>
-            <div className='mt-8'>
-
-                <EmptyLegForm/>
-            </div>
-		</div>
+		<section className='flex flex-col items-center justify-center'>
+			<main className='container flex max-w-screen-sm flex-col gap-2 py-20'>
+				<h1 className='pb-4'>Manage Empty Legs</h1>
+				<AddEmptyLeg />
+				<div className='grid gap-2 md:grid-cols-2'>
+					<h2 className='pt-8 md:col-span-2'>Existing empty legs</h2>
+					{legs.map((leg) => (
+						<EmptyLegCard {...leg} />
+					))}
+				</div>
+			</main>
+		</section>
 	)
 }
 

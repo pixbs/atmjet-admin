@@ -1,5 +1,8 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import React, { useState } from 'react'
 
 type EmptyLeg = {
@@ -49,14 +52,14 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 	}
 
 	return (
-		<ul className='space-y-4'>
+		<ul className='gap-y-4'>
 			{legs.map((leg) => (
 				<li key={leg.id} className='rounded border p-4'>
 					{editingId === leg.id ? (
 						<div>
 							<div>
-								<label htmlFor='from'>From:</label>
-								<input
+								<Label htmlFor='from'>From:</Label>
+								<Input
 									type='text'
 									id='from'
 									name='from'
@@ -66,8 +69,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='to'>To:</label>
-								<input
+								<Label htmlFor='to'>To:</Label>
+								<Input
 									type='text'
 									id='to'
 									name='to'
@@ -77,8 +80,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='start'>Start:</label>
-								<input
+								<Label htmlFor='start'>Start:</Label>
+								<Input
 									type='datetime-local'
 									id='start'
 									name='start'
@@ -91,8 +94,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='end'>End:</label>
-								<input
+								<Label htmlFor='end'>End:</Label>
+								<Input
 									type='datetime-local'
 									id='end'
 									name='end'
@@ -103,8 +106,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='price'>Price:</label>
-								<input
+								<Label htmlFor='price'>Price:</Label>
+								<Input
 									type='number'
 									id='price'
 									name='price'
@@ -113,8 +116,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='type'>Type:</label>
-								<input
+								<Label htmlFor='type'>Type:</Label>
+								<Input
 									type='text'
 									id='type'
 									name='type'
@@ -123,8 +126,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='category'>Category:</label>
-								<input
+								<Label htmlFor='category'>Category:</Label>
+								<Input
 									type='text'
 									id='category'
 									name='category'
@@ -133,8 +136,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='company'>Company:</label>
-								<input
+								<Label htmlFor='company'>Company:</Label>
+								<Input
 									type='text'
 									id='company'
 									name='company'
@@ -143,8 +146,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='safety'>Safety:</label>
-								<input
+								<Label htmlFor='safety'>Safety:</Label>
+								<Input
 									type='text'
 									id='safety'
 									name='safety'
@@ -153,8 +156,8 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 								/>
 							</div>
 							<div>
-								<label htmlFor='order'>Order:</label>
-								<input
+								<Label htmlFor='order'>Order:</Label>
+								<Input
 									type='number'
 									id='order'
 									name='order'
@@ -162,12 +165,12 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 									onChange={handleChange}
 								/>
 							</div>
-							<button onClick={handleSaveClick} className='mr-4 text-blue-500'>
+							<Button onClick={handleSaveClick} className='mr-4 text-blue-500'>
 								Save
-							</button>
-							<button onClick={() => setEditingId(null)} className='text-gray-500'>
+							</Button>
+							<Button onClick={() => setEditingId(null)} className='text-gray-500'>
 								Cancel
-							</button>
+							</Button>
 						</div>
 					) : (
 						<div>
@@ -211,12 +214,12 @@ const EmptyLegList: React.FC<EmptyLegListProps> = ({ legs, onDelete, onEdit }) =
 									<strong>Order:</strong> {leg.order}
 								</p>
 							)}
-							<button onClick={() => handleEditClick(leg)} className='mr-4 text-blue-500'>
+							<Button onClick={() => handleEditClick(leg)} className='mr-4 text-blue-500'>
 								Edit
-							</button>
-							<button onClick={() => handleDeleteClick(leg.id)} className='text-red-500'>
+							</Button>
+							<Button onClick={() => handleDeleteClick(leg.id)} className='text-red-500'>
 								Delete
-							</button>
+							</Button>
 						</div>
 					)}
 				</li>
