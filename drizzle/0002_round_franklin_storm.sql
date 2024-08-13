@@ -1,0 +1,1 @@
+ALTER TABLE "atmjet_admin__empty_legs" ADD COLUMN "category" varchar(255);
